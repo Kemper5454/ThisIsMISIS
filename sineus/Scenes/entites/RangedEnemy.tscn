@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bt5lo43hcr8hl"]
+
+[ext_resource type="Script" uid="uid://32210ycywxpp" path="res://Scripts/entities/RangedEnemy.gd" id="1_flrfq"]
+[ext_resource type="PackedScene" uid="uid://6ujmlhfbbyvm" path="res://Scenes/projectiles/enemy_bullet1.tscn" id="2_3yip6"]
+[ext_resource type="PackedScene" uid="uid://dsr0ymd84c80d" path="res://Scenes/drops/experience.tscn" id="3_wvasn"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tdwgi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yq3pn"]
+size = Vector2(68, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yq3pn"]
+radius = 359.0
+
+[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("detection_area")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_flrfq")
+bullet = ExtResource("2_3yip6")
+detection_area = NodePath("DetectionArea")
+stun_time = 0.01
+Drops = Dictionary[PackedScene, int]({
+ExtResource("3_wvasn"): 3
+})
+health = 1.0
+metadata/_custom_type_script = "uid://c8hgqt6ybs4pd"
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(68, 64)
+mesh = SubResource("QuadMesh_tdwgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yq3pn")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_yq3pn")

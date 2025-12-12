@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbx0m2hy24gu8"]
+
+[ext_resource type="Texture2D" uid="uid://bl4urhbbiofsi" path="res://Assets/Textures/altar.png" id="1_qtrpd"]
+[ext_resource type="Script" uid="uid://dpw42f74xrpn0" path="res://Scripts/altar.gd" id="1_w0d7v"]
+[ext_resource type="Script" uid="uid://dhbgpwsgic61l" path="res://Scripts/UI/debug_label.gd" id="3_brtn5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brtn5"]
+radius = 509.96667
+
+[node name="Altar" type="Node2D"]
+script = ExtResource("1_w0d7v")
+
+[node name="Altar" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("1_qtrpd")
+offset = Vector2(2, -100)
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+offset_left = -33.0
+offset_top = -306.0
+offset_right = 7.0
+offset_bottom = -283.0
+script = ExtResource("3_brtn5")
+parent_variables = Array[StringName]([&"z_index"])
+metadata/_custom_type_script = "uid://dhbgpwsgic61l"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_brtn5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr15km2p4yi2r"]
+
+[ext_resource type="Script" uid="uid://nbb8amet2gkg" path="res://Scripts/grid.gd" id="1_ciu28"]
+[ext_resource type="PackedScene" uid="uid://dyaf7lm6a68y4" path="res://Scenes/UI/slot.tscn" id="2_ahwhh"]
+
+[node name="Grid" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ciu28")
+
+[node name="Row1" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 80.0
+offset_right = 755.0
+offset_bottom = 127.0
+theme_override_constants/separation = 138
+
+[node name="Slot" parent="Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot2" parent="Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot3" parent="Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot4" parent="Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot5" parent="Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot6" parent="Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot7" parent="Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot8" parent="Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Playback" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = -45.0
+offset_right = 4.0
+offset_bottom = 176.0

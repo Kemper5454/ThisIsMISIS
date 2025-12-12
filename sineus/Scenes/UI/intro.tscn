@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://ba4rxj2x7tw3x"]
+
+[ext_resource type="Script" uid="uid://5xmjex2hl5be" path="res://Scripts/UI/intro.gd" id="1_0dwg6"]
+[ext_resource type="VideoStream" uid="uid://dlhunxykocwil" path="res://Assets/video/cut_scene0001.ogv" id="2_0dwg6"]
+[ext_resource type="Texture2D" uid="uid://lnnn63wdekhw" path="res://Assets/UI/label_under.png" id="2_872mi"]
+[ext_resource type="Texture2D" uid="uid://clhjtktmjbocw" path="res://Assets/UI/label_under_light.png" id="3_0dwg6"]
+
+[sub_resource type="Gradient" id="Gradient_872mi"]
+offsets = PackedFloat32Array(0.15064935, 1)
+colors = PackedColorArray(1, 1, 1, 0.37254903, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0dwg6"]
+gradient = SubResource("Gradient_872mi")
+
+[sub_resource type="Animation" id="Animation_mgno7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_0dwg6"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vcrw"]
+_data = {
+&"RESET": SubResource("Animation_mgno7"),
+&"flash": SubResource("Animation_0dwg6")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_0dwg6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_0dwg6")
+autoplay = true
+
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.99600005
+anchor_bottom = 0.99600005
+offset_left = -483.0
+offset_top = 794.16
+offset_right = 115.87305
+offset_bottom = 2180.4592
+rotation = -0.9154053
+texture = SubResource("GradientTexture2D_0dwg6")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control/Control"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 863.0
+offset_right = 278.0
+offset_bottom = 951.0
+scale = Vector2(2.4340072, 2.4340072)
+texture_under = ExtResource("2_872mi")
+texture_progress = ExtResource("3_0dwg6")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Control/TextureProgressBar"]
+layout_mode = 0
+offset_left = 29.58085
+offset_top = 12.325354
+offset_right = 125.58086
+offset_bottom = 35.325356
+text = "Пропустить"
+
+[node name="HintSkip" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -271.0
+offset_top = -95.0
+offset_right = 271.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 31
+text = "Удерживайте SPACE чтобы пропустить"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/HintSkip"]
+libraries = {
+&"": SubResource("AnimationLibrary_8vcrw")
+}
+autoplay = "flash"

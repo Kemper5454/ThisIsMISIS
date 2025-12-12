@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqgmeoa5ig3n"]
+
+[ext_resource type="Script" uid="uid://cr1dn3ki5oemc" path="res://Scripts/entities/EnemyEye.gd" id="1_txtw8"]
+[ext_resource type="Texture2D" uid="uid://md3fld8wmh6i" path="res://Assets/Textures/Enemies/enemy_eye.png" id="2_6dbuo"]
+[ext_resource type="PackedScene" uid="uid://6ujmlhfbbyvm" path="res://Scenes/projectiles/enemy_bullet1.tscn" id="2_sy503"]
+[ext_resource type="PackedScene" uid="uid://dsr0ymd84c80d" path="res://Scenes/drops/experience.tscn" id="3_sy503"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r43s1"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oxrrw"]
+radius = 1065.9836
+
+[node name="Eye" type="CharacterBody2D" node_paths=PackedStringArray("detection_area", "entity_sprite")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_txtw8")
+bullet = ExtResource("2_sy503")
+attack_cooldown = 0.2
+damage = 1.0
+speed = 400.0
+detection_area = NodePath("Area2D")
+chase_dist = 500.0
+entity_sprite = NodePath("EnemyEye")
+stun_time = 0.01
+Drops = Dictionary[PackedScene, int]({
+ExtResource("3_sy503"): 1
+})
+health = 2.0
+metadata/_custom_type_script = "uid://32210ycywxpp"
+
+[node name="EnemyEye" type="Sprite2D" parent="."]
+position = Vector2(2.3841858e-07, -9.094947e-13)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_6dbuo")
+hframes = 8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r43s1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oxrrw")

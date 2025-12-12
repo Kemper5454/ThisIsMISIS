@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh2v0kyho2ud3"]
+
+[ext_resource type="Script" uid="uid://5wjmbqy30mh" path="res://Scripts/UI/outro.gd" id="1_8a0tu"]
+[ext_resource type="VideoStream" uid="uid://c270rtxquiwhf" path="res://Assets/video/cut_scene0002.ogv" id="2_8a0tu"]
+
+[node name="Outro" type="Node2D"]
+script = ExtResource("1_8a0tu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_8a0tu")
+autoplay = true

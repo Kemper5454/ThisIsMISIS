@@ -1,0 +1,140 @@
+[gd_scene load_steps=11 format=3 uid="uid://lorxwmos4tmb"]
+
+[ext_resource type="Script" uid="uid://c7hmxn4ivefig" path="res://Scripts/UI/options.gd" id="1_prnvy"]
+[ext_resource type="Texture2D" uid="uid://b7m4is85d0n5" path="res://Assets/UI/buttons.png" id="2_qyyw6"]
+[ext_resource type="PackedScene" uid="uid://q3r58o0mbk7" path="res://Scenes/UI/button.tscn" id="2_ww8vx"]
+[ext_resource type="PackedScene" uid="uid://tqtrkchr3jl6" path="res://Scenes/UI/small_button.tscn" id="4_35y0k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kftxf"]
+resource_local_to_scene = true
+atlas = ExtResource("2_qyyw6")
+region = Rect2(0, 160, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_663nc"]
+resource_local_to_scene = true
+atlas = ExtResource("2_qyyw6")
+region = Rect2(228, 160, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s3wi"]
+resource_local_to_scene = true
+atlas = ExtResource("2_qyyw6")
+region = Rect2(0, 640, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jme0m"]
+resource_local_to_scene = true
+atlas = ExtResource("2_qyyw6")
+region = Rect2(228, 640, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35y0k"]
+resource_local_to_scene = true
+atlas = ExtResource("2_qyyw6")
+region = Rect2(0, 720, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qamcq"]
+resource_local_to_scene = true
+atlas = ExtResource("2_qyyw6")
+region = Rect2(228, 720, 228, 80)
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_prnvy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -714.0
+offset_top = -322.0
+offset_right = 2731.0
+offset_bottom = 1536.0
+color = Color(0, 0, 0, 0.42352942)
+
+[node name="VolumeValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 101.0
+offset_right = 617.0
+offset_bottom = 286.0
+theme_override_font_sizes/font_size = 66
+text = "Music
+s%"
+horizontal_alignment = 1
+
+[node name="VolumeUp" parent="." instance=ExtResource("4_35y0k")]
+layout_mode = 0
+offset_left = 713.0
+offset_top = 116.0
+offset_right = 841.0
+offset_bottom = 244.0
+
+[node name="VolumeDown" parent="." instance=ExtResource("4_35y0k")]
+layout_mode = 0
+offset_left = -19.00003
+offset_top = 123.0
+offset_right = 108.99997
+offset_bottom = 251.0
+scale = Vector2(-1.6, 1.6)
+
+[node name="VolumeValueSFX" type="Label" parent="."]
+layout_mode = 0
+offset_left = 300.3609
+offset_top = 374.04175
+offset_right = 621.3609
+offset_bottom = 559.04175
+theme_override_font_sizes/font_size = 66
+text = "Music
+s%"
+horizontal_alignment = 1
+
+[node name="SfxUp" parent="." instance=ExtResource("4_35y0k")]
+layout_mode = 0
+offset_left = 717.3609
+offset_top = 389.04172
+offset_right = 845.3609
+offset_bottom = 517.04175
+
+[node name="SfxDown" parent="." instance=ExtResource("4_35y0k")]
+layout_mode = 0
+offset_left = -14.639114
+offset_top = 396.04172
+offset_right = 113.360886
+offset_bottom = 524.04175
+scale = Vector2(-1.6, 1.6)
+
+[node name="ButtonClose" parent="." instance=ExtResource("2_ww8vx")]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 790.0
+offset_right = 366.0
+offset_bottom = 830.0
+texture_normal = SubResource("AtlasTexture_kftxf")
+texture_hover = SubResource("AtlasTexture_663nc")
+
+[node name="ButtonWindowed" parent="." instance=ExtResource("2_ww8vx")]
+layout_mode = 0
+offset_left = 1381.0
+offset_top = 160.0
+offset_right = 1609.0
+offset_bottom = 240.0
+texture_normal = SubResource("AtlasTexture_0s3wi")
+texture_hover = SubResource("AtlasTexture_jme0m")
+
+[node name="ButtonFullscreen" parent="." instance=ExtResource("2_ww8vx")]
+layout_mode = 0
+offset_left = 1380.0
+offset_top = -500.0
+offset_right = 1608.0
+offset_bottom = -420.0
+texture_normal = SubResource("AtlasTexture_35y0k")
+texture_hover = SubResource("AtlasTexture_qamcq")
+
+[connection signal="pressed" from="VolumeUp" to="." method="_on_volume_up_pressed"]
+[connection signal="pressed" from="VolumeDown" to="." method="_on_volume_down_pressed"]
+[connection signal="pressed" from="SfxUp" to="." method="_on_sfx_up_pressed"]
+[connection signal="pressed" from="SfxDown" to="." method="_on_sfx_down_pressed"]
+[connection signal="pressed" from="ButtonClose" to="." method="_on_button_close_pressed"]
+[connection signal="pressed" from="ButtonWindowed" to="." method="_on_button_windowed_pressed"]
+[connection signal="pressed" from="ButtonFullscreen" to="." method="_on_button_fullscreen_pressed"]

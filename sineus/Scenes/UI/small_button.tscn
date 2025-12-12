@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://tqtrkchr3jl6"]
+
+[ext_resource type="Texture2D" uid="uid://dn24bk0x002f3" path="res://Assets/UI/next_button.png" id="1_nng3d"]
+[ext_resource type="Script" uid="uid://d1lf2pf0h3i7p" path="res://Scripts/UI/button.gd" id="2_mqflm"]
+
+[node name="ButtonPlay" type="TextureButton"]
+offset_top = -1.0
+offset_right = 128.0
+offset_bottom = 127.0
+scale = Vector2(1.6, 1.6)
+pivot_offset = Vector2(114.39966, 40.06958)
+texture_normal = ExtResource("1_nng3d")
+script = ExtResource("2_mqflm")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

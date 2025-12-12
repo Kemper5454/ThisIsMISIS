@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvawvuo61mqfp"]
+
+[ext_resource type="Script" uid="uid://urwropotera4" path="res://Scripts/effects/area_indicator.gd" id="1_dytix"]
+[ext_resource type="Texture2D" uid="uid://bc1mw100kt5t6" path="res://Assets/Textures/effects/target.png" id="2_i6v5o"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_i6v5o"]
+
+[sub_resource type="Animation" id="Animation_wurn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(18.892157, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Target:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5yhss"]
+resource_name = "flashing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(18.892157, 0, 0, 1), Color(18.892157, 0, 0, 0.40784314), Color(18.892157, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Target:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.5, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgpf5"]
+_data = {
+&"RESET": SubResource("Animation_wurn1"),
+&"flashing": SubResource("Animation_5yhss")
+}
+
+[node name="AreaIndicator" type="Node2D"]
+script = ExtResource("1_dytix")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+modulate = Color(18.892157, 0, 0, 1)
+position = Vector2(0, 78)
+scale = Vector2(300.3402, 84.00001)
+mesh = SubResource("SphereMesh_i6v5o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hgpf5")
+}
+autoplay = "flashing"
+
+[node name="Target" type="Sprite2D" parent="."]
+modulate = Color(6.5745435, 0, 0, 1)
+position = Vector2(6, 74)
+scale = Vector2(0.315, 0.315)
+texture = ExtResource("2_i6v5o")

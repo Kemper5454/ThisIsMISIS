@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://br6cdsvlteauy"]
+
+[ext_resource type="Script" uid="uid://730gkuj0oi87" path="res://Scripts/effects/SpriteEffect.gd" id="1_lge3d"]
+[ext_resource type="Texture2D" uid="uid://dsapgo1xnmvd8" path="res://Assets/Textures/effects/mob_hit.png" id="2_lge3d"]
+
+[node name="SpriteEffect" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_lge3d")
+sprite = NodePath("Sprite2D")
+random_rotation = true
+metadata/_custom_type_script = "uid://730gkuj0oi87"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_lge3d")
+hframes = 4
+vframes = 2

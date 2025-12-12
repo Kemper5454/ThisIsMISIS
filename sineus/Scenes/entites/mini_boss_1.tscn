@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx06hxxlec23g"]
+
+[ext_resource type="Script" uid="uid://0smy4dm8x1os" path="res://Scripts/entities/mini_boss_1.gd" id="1_kve0r"]
+[ext_resource type="Texture2D" uid="uid://cklv7eedmv6o2" path="res://Assets/Textures/Enemies/mini boss 1.png" id="2_bsc12"]
+[ext_resource type="PackedScene" uid="uid://dsr0ymd84c80d" path="res://Scenes/drops/experience.tscn" id="2_c7ei8"]
+[ext_resource type="Script" uid="uid://dhbgpwsgic61l" path="res://Scripts/UI/debug_label.gd" id="3_10rjq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_10rjq"]
+radius = 113.004425
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kve0r"]
+radius = 882.30664
+
+[node name="MiniBoss1" type="CharacterBody2D" node_paths=PackedStringArray("detection_area", "entity_sprite")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_kve0r")
+jump_radius = 400.0
+shot_cooldown = 5.0
+speed = 200.0
+detection_area = NodePath("Area2D")
+chase_dist = 1000.0
+entity_sprite = NodePath("MiniBoss1")
+enable_sqeeze_during_movement = true
+sqeeze_time = 1.0
+squeeze_multiplier_y = 0.94
+can_be_stunned = false
+Drops = Dictionary[PackedScene, int]({
+ExtResource("2_c7ei8"): 20
+})
+health = 250.0
+metadata/_custom_type_script = "uid://c8hgqt6ybs4pd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 2)
+shape = SubResource("CircleShape2D_10rjq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kve0r")
+
+[node name="MiniBoss1" type="Sprite2D" parent="."]
+position = Vector2(3, -8)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("2_bsc12")
+hframes = 4
+vframes = 3
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+offset_left = -69.0
+offset_top = -210.0
+offset_right = -29.0
+offset_bottom = -187.0
+script = ExtResource("3_10rjq")
+parent_variables = Array[StringName]([&"health", &"state"])
+metadata/_custom_type_script = "uid://dhbgpwsgic61l"
+
+[node name="Shockwave spawn_pos" type="Node2D" parent="."]
+position = Vector2(3, 98)

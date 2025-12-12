@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1crlmvqkeoc0"]
+
+[ext_resource type="Script" uid="uid://dw4dkx7uylinm" path="res://Scripts/UI/tooltip.gd" id="1_617o6"]
+[ext_resource type="Texture2D" uid="uid://dw2qhyht6iu0s" path="res://Assets/UI/tooltip.png" id="1_ogi1g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_617o6"]
+
+[node name="Tooltip" type="Control"]
+process_mode = 3
+z_index = 999
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_617o6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 999
+follow_viewport_enabled = true
+
+[node name="Container" type="PanelContainer" parent="CanvasLayer"]
+top_level = true
+z_index = 25
+custom_minimum_size = Vector2(230, 0)
+offset_right = 309.0
+offset_bottom = 220.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_617o6")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Container"]
+z_index = -1
+layout_mode = 2
+texture = ExtResource("1_ogi1g")
+patch_margin_left = 50
+patch_margin_top = 50
+patch_margin_right = 50
+patch_margin_bottom = 36
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 31
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/MarginContainer3"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Container/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Name"
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/MarginContainer3/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Damage" type="Label" parent="CanvasLayer/Container/MarginContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = " "
+
+[node name="Weight" type="Sprite2D" parent="CanvasLayer/Container/MarginContainer3/VBoxContainer/HBoxContainer/Damage"]
+position = Vector2(10, 11)
+scale = Vector2(0.39, 0.39)
+
+[node name="Weight" type="Label" parent="CanvasLayer/Container/MarginContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = " "
+
+[node name="Weight" type="Sprite2D" parent="CanvasLayer/Container/MarginContainer3/VBoxContainer/HBoxContainer/Weight"]
+position = Vector2(10, 11)
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 31
+theme_override_constants/margin_top = 93
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/MarginContainer2"]
+layout_mode = 2
+
+[node name="Desc" type="RichTextLabel" parent="CanvasLayer/Container/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 22
+text = "Description and blablabladdddddddddddd
+"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false

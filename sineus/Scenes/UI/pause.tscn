@@ -1,0 +1,119 @@
+[gd_scene load_steps=11 format=3 uid="uid://l0bobjyqlgpf"]
+
+[ext_resource type="Script" uid="uid://b0opwqckt0vce" path="res://Scripts/UI/pause.gd" id="1_2ceew"]
+[ext_resource type="PackedScene" uid="uid://q3r58o0mbk7" path="res://Scenes/UI/button.tscn" id="1_a111y"]
+[ext_resource type="Texture2D" uid="uid://b7m4is85d0n5" path="res://Assets/UI/buttons.png" id="2_2ceew"]
+[ext_resource type="PackedScene" uid="uid://lorxwmos4tmb" path="res://Scenes/UI/options.tscn" id="4_3vu23"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vu23"]
+resource_local_to_scene = true
+atlas = ExtResource("2_2ceew")
+region = Rect2(0, 0, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no3u0"]
+resource_local_to_scene = true
+atlas = ExtResource("2_2ceew")
+region = Rect2(228, 0, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1tur"]
+resource_local_to_scene = true
+atlas = ExtResource("2_2ceew")
+region = Rect2(0, 80, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3ekv"]
+resource_local_to_scene = true
+atlas = ExtResource("2_2ceew")
+region = Rect2(228, 80, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ldl0"]
+resource_local_to_scene = true
+atlas = ExtResource("2_2ceew")
+region = Rect2(0, 400, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86i1j"]
+resource_local_to_scene = true
+atlas = ExtResource("2_2ceew")
+region = Rect2(228, 400, 228, 80)
+
+[node name="Pause" type="Control"]
+process_mode = 3
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ceew")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -249.0
+offset_top = -169.0
+offset_right = 2205.0
+offset_bottom = 1295.0
+color = Color(0, 0, 0, 0.3019608)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 709.0
+offset_top = 216.0
+offset_right = 1217.0
+offset_bottom = 802.0
+color = Color(0.6058549, 0.3228706, 3.85046e-07, 0.5019608)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 614.0
+offset_top = 167.0
+offset_right = 1304.0
+offset_bottom = 313.0
+theme_override_font_sizes/font_size = 66
+text = "Пауза"
+horizontal_alignment = 1
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 61.0
+offset_top = 2.0
+offset_right = 101.0
+offset_bottom = 42.0
+
+[node name="ButtonPlay" parent="Buttons" instance=ExtResource("1_a111y")]
+layout_mode = 0
+offset_left = 787.6398
+offset_top = 324.04175
+offset_right = 1015.6398
+offset_bottom = 404.04175
+texture_normal = SubResource("AtlasTexture_3vu23")
+texture_hover = SubResource("AtlasTexture_no3u0")
+
+[node name="ButtonPlay2" parent="Buttons" instance=ExtResource("1_a111y")]
+layout_mode = 0
+offset_left = 789.6398
+offset_top = 463.04175
+offset_right = 1017.6398
+offset_bottom = 543.04175
+texture_normal = SubResource("AtlasTexture_x1tur")
+texture_hover = SubResource("AtlasTexture_d3ekv")
+
+[node name="ButtonPlay3" parent="Buttons" instance=ExtResource("1_a111y")]
+layout_mode = 0
+offset_left = 787.6398
+offset_top = 621.04175
+offset_right = 1015.6398
+offset_bottom = 701.04175
+texture_normal = SubResource("AtlasTexture_5ldl0")
+texture_hover = SubResource("AtlasTexture_86i1j")
+
+[node name="Options" parent="." instance=ExtResource("4_3vu23")]
+visible = false
+layout_mode = 1
+offset_left = -19.0
+offset_top = -9.0
+offset_right = 21.0
+offset_bottom = 31.0
+
+[connection signal="pressed" from="Buttons/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="Buttons/ButtonPlay2" to="." method="_on_button_play_2_pressed"]
+[connection signal="pressed" from="Buttons/ButtonPlay3" to="." method="_on_button_play_3_pressed"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bexbouqtpkrdv"]
+
+[ext_resource type="Script" path="res://Scripts/effects/SpriteEffect.gd" id="1_wo7rg"]
+[ext_resource type="Texture2D" uid="uid://d3rlqpksiarmb" path="res://Assets/Textures/effects/spark.png" id="2_h7qp2"]
+
+[node name="Spark" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_wo7rg")
+sprite = NodePath("Sprite2D")
+mode = 1
+metadata/_custom_type_script = "uid://730gkuj0oi87"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_h7qp2")
+hframes = 4
+vframes = 2

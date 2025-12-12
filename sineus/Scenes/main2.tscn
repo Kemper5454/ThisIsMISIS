@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl62vvyr18g5y"]
+
+[ext_resource type="Script" uid="uid://k0je0iugqj4b" path="res://Scripts/main.gd" id="1_63pow"]
+[ext_resource type="PackedScene" uid="uid://0fqd3po3jvog" path="res://Scenes/entites/brain.tscn" id="3_63pow"]
+[ext_resource type="PackedScene" uid="uid://cqgmeoa5ig3n" path="res://Scenes/entites/eye.tscn" id="4_vg7bx"]
+[ext_resource type="Script" uid="uid://dievqxhh1ptsx" path="res://Scripts/waves_logic/wave.gd" id="5_od2jo"]
+
+[node name="main2" type="Node2D"]
+z_as_relative = false
+script = ExtResource("1_63pow")
+spawn_enemies = false
+
+[node name="Brain" parent="." instance=ExtResource("3_63pow")]
+position = Vector2(1287, 1201)
+chase_dist = 800.0
+health = 50.0
+
+[node name="Eye" parent="." instance=ExtResource("4_vg7bx")]
+position = Vector2(1361, 982)
+
+[node name="Waves" type="Node" parent="."]
+
+[node name="WaveNode" type="Node" parent="Waves"]
+script = ExtResource("5_od2jo")
+metadata/_custom_type_script = "uid://dievqxhh1ptsx"

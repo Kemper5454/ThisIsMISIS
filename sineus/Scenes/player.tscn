@@ -1,0 +1,395 @@
+[gd_scene load_steps=36 format=3 uid="uid://csagcj03md8fk"]
+
+[ext_resource type="Script" uid="uid://bedm11t62nq2r" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://blxe481co6pfr" path="res://Assets/Textures/character.png" id="2_fkybt"]
+[ext_resource type="PackedScene" uid="uid://cr15km2p4yi2r" path="res://Scenes/UI/grid.tscn" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://34l71pji3hf6" path="res://Assets/UI/clocks.png" id="4_igrcy"]
+[ext_resource type="Script" uid="uid://dhbgpwsgic61l" path="res://Scripts/UI/debug_label.gd" id="4_vgqql"]
+[ext_resource type="PackedScene" uid="uid://krb0ose4nnxm" path="res://Scenes/UI/upgrade_menu.tscn" id="5_fkybt"]
+[ext_resource type="Shader" uid="uid://ccew1xhdloigf" path="res://Assets/vignette.gdshader" id="6_x3wgy"]
+[ext_resource type="PackedScene" uid="uid://cx7j74odk6cq1" path="res://Scenes/UI/death.tscn" id="7_3smsa"]
+[ext_resource type="Texture2D" uid="uid://dnhbmndhfe2ah" path="res://Assets/UI/health_bar.png" id="7_f1ek2"]
+[ext_resource type="Shader" uid="uid://cwqiou7ytxktf" path="res://Assets/image.gdshader" id="7_fd4e3"]
+[ext_resource type="Texture2D" uid="uid://cvntvc3170dd4" path="res://Assets/UI/dash_bar.png" id="7_gymyn"]
+[ext_resource type="Texture2D" uid="uid://i1g2up0trw51" path="res://Assets/UI/dash_full.png" id="8_pu2lt"]
+[ext_resource type="Texture2D" uid="uid://illr51m3bkv2" path="res://Assets/UI/level_bar.png" id="8_qqcod"]
+[ext_resource type="Texture2D" uid="uid://cvwhmily1fp1p" path="res://Assets/UI/health_fill.png" id="8_tx1dd"]
+[ext_resource type="Script" uid="uid://cn17t8wvhg7r2" path="res://Scripts/UI/exp_bar.gd" id="9_qqcod"]
+[ext_resource type="Script" uid="uid://dtq2rlvaefuqk" path="res://Scripts/tutor.gd" id="12_7dp3o"]
+[ext_resource type="Texture2D" uid="uid://lnnn63wdekhw" path="res://Assets/UI/label_under.png" id="12_igrcy"]
+[ext_resource type="PackedScene" uid="uid://q3r58o0mbk7" path="res://Scenes/UI/button.tscn" id="12_ukyrk"]
+[ext_resource type="Texture2D" uid="uid://b7m4is85d0n5" path="res://Assets/UI/buttons.png" id="13_7dp3o"]
+[ext_resource type="PackedScene" uid="uid://l0bobjyqlgpf" path="res://Scenes/UI/pause.tscn" id="20_l6n3p"]
+
+[sub_resource type="Animation" id="Animation_x3wgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3smsa"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_fkybt"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0999, 0.1998, 0.2997, 0.3996, 0.4995, 0.5994, 0.6993),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3smsa"]
+_data = {
+&"RESET": SubResource("Animation_x3wgy"),
+&"idle": SubResource("Animation_3smsa"),
+&"run": SubResource("Animation_fkybt")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
+radius = 22.0
+height = 64.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3smsa"]
+shader = ExtResource("6_x3wgy")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.36
+shader_parameter/outer_radius = 1.6
+
+[sub_resource type="Gradient" id="Gradient_fd4e3"]
+colors = PackedColorArray(0, 0, 0.66, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qqcod"]
+frequency = 0.0014
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_igrcy"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_qqcod")
+color_ramp = SubResource("Gradient_fd4e3")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_igrcy"]
+shader = ExtResource("7_fd4e3")
+shader_parameter/tile_tex = ExtResource("8_qqcod")
+shader_parameter/tile_scale = Vector2(4, 1)
+shader_parameter/tile_offset = Vector2(0, 0)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_igrcy")
+shader_parameter/noise_strength = 0.845
+shader_parameter/noise_scale = Vector2(1, 0.5)
+shader_parameter/noise_offset = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_olqyp"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wpjfl"]
+gradient = SubResource("Gradient_olqyp")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
+resource_local_to_scene = true
+atlas = ExtResource("13_7dp3o")
+region = Rect2(0, 480, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd4e3"]
+resource_local_to_scene = true
+atlas = ExtResource("13_7dp3o")
+region = Rect2(228, 480, 228, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkybt"]
+radius = 751.01666
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_v0iea")
+health = 50.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(3, -110)
+ignore_rotation = false
+zoom = Vector2(0.9, 0.9)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 21.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3smsa")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -45)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_fkybt")
+hframes = 8
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -34)
+shape = SubResource("CapsuleShape2D_x3wgy")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+z_index = 88
+
+[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
+process_mode = 3
+z_index = -2
+material = SubResource("ShaderMaterial_3smsa")
+offset_left = -1224.0
+offset_top = -810.0
+offset_right = 1227.0
+offset_bottom = 587.0
+mouse_filter = 2
+
+[node name="DebugLabel" type="Label" parent="CanvasGroup"]
+visible = false
+offset_left = -981.0
+offset_top = -241.0
+offset_right = -907.0
+offset_bottom = -202.0
+script = ExtResource("4_vgqql")
+parent_variables = Array[StringName]([&"health", &"experience", &"level_up_queue"])
+metadata/_custom_type_script = "uid://dhbgpwsgic61l"
+
+[node name="Clocks" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(883, -258.00003)
+scale = Vector2(1.8265309, 1.8265309)
+texture = ExtResource("4_igrcy")
+
+[node name="Time" type="Label" parent="CanvasGroup/Clocks"]
+process_mode = 3
+offset_left = -54.20124
+offset_top = -24.089376
+offset_right = 22.79876
+offset_bottom = 39.91062
+theme_override_constants/outline_size = 21
+theme_override_font_sizes/font_size = 30
+text = "77:77"
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasGroup"]
+modulate = Color(18.892157, 0, 0, 1)
+offset_left = -35.0
+offset_top = 16.0
+offset_right = 37.0
+offset_bottom = 27.0
+mouse_filter = 2
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="DashBar" type="TextureProgressBar" parent="CanvasGroup"]
+process_mode = 3
+offset_left = -1020.0
+offset_top = -505.0
+offset_right = -508.0
+offset_bottom = -395.0
+scale = Vector2(0.5894048, 0.5894048)
+value = 100.0
+texture_under = ExtResource("7_gymyn")
+texture_progress = ExtResource("8_pu2lt")
+texture_progress_offset = Vector2(13, 16)
+
+[node name="PressSpace" type="TextureRect" parent="CanvasGroup/DashBar"]
+layout_mode = 0
+offset_left = 30.539282
+offset_top = 35.62916
+offset_right = 207.53928
+offset_bottom = 94.629166
+texture = ExtResource("12_igrcy")
+
+[node name="Label" type="Label" parent="CanvasGroup/DashBar/PressSpace"]
+layout_mode = 0
+offset_left = 32.23591
+offset_top = 6.7865076
+offset_right = 130.2359
+offset_bottom = 42.786507
+theme_override_font_sizes/font_size = 26
+text = "Пробел"
+
+[node name="HealthBarBig" type="TextureProgressBar" parent="CanvasGroup"]
+process_mode = 3
+offset_left = -1033.0
+offset_top = -635.0
+offset_right = -521.0
+offset_bottom = -525.0
+scale = Vector2(0.8272743, 0.8272743)
+value = 100.0
+texture_under = ExtResource("7_f1ek2")
+texture_progress = ExtResource("8_tx1dd")
+texture_progress_offset = Vector2(19, 16)
+
+[node name="Label" type="Label" parent="CanvasGroup/HealthBarBig"]
+process_mode = 3
+layout_mode = 0
+offset_left = 43.516396
+offset_top = 60.43944
+offset_right = 176.48318
+offset_bottom = 96.43944
+theme_override_font_sizes/font_size = 26
+text = "50/50"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Warn" type="Label" parent="CanvasGroup"]
+process_mode = 3
+offset_left = 652.0
+offset_top = -447.0
+offset_right = 876.0
+offset_bottom = -360.0
+theme_override_constants/outline_size = 21
+theme_override_font_sizes/font_size = 30
+text = "Продержитесь
+ до 4:00"
+horizontal_alignment = 1
+
+[node name="Grid" parent="." instance=ExtResource("3_6t5aa")]
+z_index = 99
+offset_left = -386.00003
+offset_top = -599.00006
+offset_right = -346.0
+offset_bottom = -559.00006
+scale = Vector2(0.6883272, 0.6119645)
+
+[node name="GameiLogo" parent="Grid" index="5"]
+position = Vector2(1639.0001, 70.99999)
+scale = Vector2(2.7738094, 2.77381)
+
+[node name="UpgradeMenu" parent="." instance=ExtResource("5_fkybt")]
+z_index = 99
+offset_left = -953.0
+offset_top = 2000.0
+offset_right = -953.0
+offset_bottom = 2000.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+offset_left = -106.0
+offset_top = -24.0
+offset_right = 2037.0
+offset_bottom = 46.0
+color = Color(0.051262468, 0.082241125, 0.1649476, 1)
+
+[node name="ExpBar" type="TextureProgressBar" parent="CanvasLayer"]
+process_mode = 3
+modulate = Color(1, 0.90000004, 0, 1)
+material = SubResource("ShaderMaterial_igrcy")
+offset_left = -1.0
+offset_top = -12.0
+offset_right = 1920.0
+offset_bottom = 50.0
+scale = Vector2(1, 0.745)
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_wpjfl")
+script = ExtResource("9_qqcod")
+
+[node name="Death" parent="CanvasLayer" instance=ExtResource("7_3smsa")]
+offset_left = 7.0
+offset_top = 1077.0
+offset_right = 7.0
+offset_bottom = 1077.0
+
+[node name="Tutor" type="ColorRect" parent="CanvasLayer"]
+process_mode = 3
+offset_left = -577.0
+offset_top = 293.0
+offset_right = -45.0
+offset_bottom = 831.0
+scale = Vector2(0.8881288, 0.8881288)
+color = Color(0, 0, 0, 1)
+script = ExtResource("12_7dp3o")
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutor"]
+process_mode = 3
+layout_mode = 0
+offset_left = 20.0
+offset_top = 29.0
+offset_right = 525.0
+offset_bottom = 494.0
+theme_override_font_sizes/font_size = 26
+text = "Добро пожаловать на Grave Rave!
+ Твоя музыка — твоё оружие.
+
+Посмотри: на поле уже стоит первая нота.
+ Каждая колонка звучит по очереди, слева направо.
+
+Когда линия доходит до ноты — она играет.
+ И звук становится атакой.
+"
+autowrap_mode = 2
+
+[node name="ButtonPlay" parent="CanvasLayer/Tutor" instance=ExtResource("12_ukyrk")]
+process_mode = 3
+layout_mode = 0
+offset_left = 237.99998
+offset_top = 516.0
+offset_right = 466.0
+offset_bottom = 596.0
+scale = Vector2(1.1038215, 1.1038215)
+texture_normal = SubResource("AtlasTexture_h4iuc")
+texture_hover = SubResource("AtlasTexture_fd4e3")
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("20_l6n3p")]
+offset_top = -2000.0
+offset_bottom = -2000.0
+
+[node name="Transition" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_left = -76.0
+offset_top = -91.0
+offset_right = 2011.0
+offset_bottom = 1197.0
+color = Color(0, 0, 0, 1)
+
+[node name="StepCD" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="AutoAim" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAim"]
+shape = SubResource("CircleShape2D_fkybt")
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="CanvasLayer/Tutor/ButtonPlay" to="CanvasLayer/Tutor" method="close_tutor"]
+[connection signal="body_entered" from="AutoAim" to="." method="_on_auto_aim_body_entered"]
+[connection signal="body_exited" from="AutoAim" to="." method="_on_auto_aim_body_exited"]
+
+[editable path="Grid"]

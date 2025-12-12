@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs6oumftjlrfa"]
+
+[ext_resource type="Script" uid="uid://bqm3slaqma6q1" path="res://Scripts/prop/prop.gd" id="1_eddqp"]
+[ext_resource type="Texture2D" uid="uid://c2blupytgsd6l" path="res://Assets/Textures/pumpkin.png" id="1_qall6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eddqp"]
+radius = 32.38827
+
+[node name="pumpkin normal" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_eddqp")
+sprite = NodePath("Pumpkin")
+
+[node name="Pumpkin" type="Sprite2D" parent="."]
+position = Vector2(1, -33)
+texture = ExtResource("1_qall6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, -18)
+shape = SubResource("CircleShape2D_eddqp")

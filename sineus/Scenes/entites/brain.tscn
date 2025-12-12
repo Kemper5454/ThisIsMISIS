@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://0fqd3po3jvog"]
+
+[ext_resource type="Script" uid="uid://cus541s8w436x" path="res://Scripts/entities/brain.gd" id="1_2xew0"]
+[ext_resource type="Texture2D" uid="uid://h1cuxcrmc1yr" path="res://Assets/Textures/Enemies/brain.png" id="2_dpnkg"]
+[ext_resource type="PackedScene" uid="uid://6ujmlhfbbyvm" path="res://Scenes/projectiles/enemy_bullet1.tscn" id="2_tydny"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xew0"]
+radius = 1309.0061
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dpnkg"]
+radius = 45.099888
+
+[node name="Brain" type="CharacterBody2D" node_paths=PackedStringArray("detection_area", "entity_sprite")]
+script = ExtResource("1_2xew0")
+bullet = ExtResource("2_tydny")
+bullet_speed = 850.0
+damage = 10.0
+detection_area = NodePath("Area2D")
+chase_dist = 500.0
+entity_sprite = NodePath("Brain")
+enable_sqeeze_during_movement = true
+no_stop_attacking = true
+metadata/_custom_type_script = "uid://32210ycywxpp"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2xew0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dpnkg")
+
+[node name="Brain" type="Sprite2D" parent="."]
+position = Vector2(2, 4)
+scale = Vector2(0.308, 0.308)
+texture = ExtResource("2_dpnkg")
+hframes = 4
+vframes = 2

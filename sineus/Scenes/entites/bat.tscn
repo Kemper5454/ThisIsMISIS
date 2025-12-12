@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1pojxbck1am0"]
+
+[ext_resource type="Script" path="res://Scripts/entities/bat.gd" id="1_tehbx"]
+[ext_resource type="Texture2D" uid="uid://5grux4sa1qig" path="res://Assets/Textures/Enemies/bat.png" id="2_17iqj"]
+[ext_resource type="PackedScene" uid="uid://dsr0ymd84c80d" path="res://Scenes/drops/experience.tscn" id="2_wfswp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tehbx"]
+radius = 26.019224
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_17iqj"]
+radius = 624.08014
+
+[node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("detection_area", "entity_sprite")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_tehbx")
+speed = 350.0
+detection_area = NodePath("Area2D")
+chase_dist = 75.0
+entity_sprite = NodePath("Bat")
+Drops = Dictionary[PackedScene, int]({
+ExtResource("2_wfswp"): 1
+})
+health = 2.0
+metadata/_custom_type_script = "uid://cgtexfg5p2yob"
+
+[node name="Bat" type="Sprite2D" parent="."]
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("2_17iqj")
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tehbx")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_17iqj")

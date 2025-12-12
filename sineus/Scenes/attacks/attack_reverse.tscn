@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://86te80fxca3s"]
+
+[ext_resource type="PackedScene" uid="uid://iwkc1qy4xu70" path="res://Scenes/attacks/attack_basic.tscn" id="1_i68x0"]
+[ext_resource type="Script" uid="uid://bhikkn60p8sjq" path="res://Scripts/Attacks/attack_reverse.gd" id="2_i68x0"]
+[ext_resource type="Texture2D" uid="uid://c1m77enj8odvj" path="res://Assets/Textures/Attacks/attack_reverse.png" id="3_i68x0"]
+[ext_resource type="Texture2D" uid="uid://d3a5chy3h8w7w" path="res://Assets/Textures/bullet.png" id="4_lu3tb"]
+
+[node name="Attack2" instance=ExtResource("1_i68x0")]
+script = ExtResource("2_i68x0")
+t_name = "Реверс"
+t_desc = "Копирует предыдущую атаку с большим уроном"
+is_tonal = false
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_i68x0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Stars" index="0"]
+modulate = Color(1, 0.81666666, 0, 1)
+position = Vector2(-136, 121)
+texture = ExtResource("4_lu3tb")

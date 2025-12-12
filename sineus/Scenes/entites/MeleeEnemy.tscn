@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://djdfftp2s1c4m"]
+
+[ext_resource type="Script" uid="uid://cgtexfg5p2yob" path="res://Scripts/entities/MeleeEnemy.gd" id="1_yq3pn"]
+[ext_resource type="PackedScene" uid="uid://dsr0ymd84c80d" path="res://Scenes/drops/experience.tscn" id="2_fapua"]
+[ext_resource type="Texture2D" uid="uid://cto0q2cqvi728" path="res://Assets/Textures/Enemies/enemy_ghost.png" id="2_u7slj"]
+[ext_resource type="Script" uid="uid://dhbgpwsgic61l" path="res://Scripts/UI/debug_label.gd" id="4_02muq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yq3pn"]
+size = Vector2(68, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yq3pn"]
+radius = 597.03015
+
+[node name="MeleeEnemy" type="CharacterBody2D" node_paths=PackedStringArray("detection_area")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_yq3pn")
+detection_area = NodePath("DetectionArea")
+stun_time = 0.02
+Drops = Dictionary[PackedScene, int]({
+ExtResource("2_fapua"): 1
+})
+health = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yq3pn")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_yq3pn")
+
+[node name="EnemyGhost" type="Sprite2D" parent="."]
+scale = Vector2(0.145, 0.145)
+texture = ExtResource("2_u7slj")
+hframes = 8
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_02muq")
+parent_variables = Array[StringName]([&"health"])
+metadata/_custom_type_script = "uid://dhbgpwsgic61l"

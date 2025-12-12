@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsr0ymd84c80d"]
+
+[ext_resource type="Script" uid="uid://4vn5kvsmu462" path="res://Scripts/drops/drop.gd" id="1_7cgsc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7cgsc"]
+radius = 403.44763
+
+[sub_resource type="Curve" id="Curve_7cgsc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3670213, 0), 0.0, 0.0, 0, 0, Vector2(0.5265958, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="QuadMesh" id="QuadMesh_4b0dk"]
+
+[node name="Experience" type="Node2D" node_paths=PackedStringArray("sensivity_area", "trail_line")]
+script = ExtResource("1_7cgsc")
+modifies_varible = "experience"
+value = 1.0
+sensivity_area = NodePath("Area2D")
+trail_line = NodePath("Line2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7cgsc")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width_curve = SubResource("Curve_7cgsc")
+default_color = Color(0, 1, 1, 1)
+end_cap_mode = 2
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+rotation = 2.3561945
+scale = Vector2(13.67677, 13.67677)
+mesh = SubResource("QuadMesh_4b0dk")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+rotation = 2.3561945
+scale = Vector2(9.107172, 9.107172)
+mesh = SubResource("QuadMesh_4b0dk")

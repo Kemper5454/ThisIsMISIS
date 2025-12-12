@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv36n3nce8lns"]
+
+[ext_resource type="PackedScene" uid="uid://iwkc1qy4xu70" path="res://Scenes/attacks/attack_basic.tscn" id="1_ncxcr"]
+[ext_resource type="Script" uid="uid://b5alt718emxtt" path="res://Scripts/Attacks/attack_openhat.gd" id="2_ncxcr"]
+[ext_resource type="Texture2D" uid="uid://bwj0dq2pr8dqu" path="res://Assets/Textures/Attacks/attack_hat.png" id="3_ncxcr"]
+[ext_resource type="Texture2D" uid="uid://d3a5chy3h8w7w" path="res://Assets/Textures/bullet.png" id="4_n1q8o"]
+
+[node name="Attack2" instance=ExtResource("1_ncxcr")]
+script = ExtResource("2_ncxcr")
+t_name = "Опэн-хэт"
+t_desc = "Если атака справа - Снейр или Клэп, усиливает её в 2 раза"
+is_tonal = false
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_ncxcr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Stars" index="0"]
+modulate = Color(1, 0.81666666, 0, 1)
+position = Vector2(136, 121)
+texture = ExtResource("4_n1q8o")

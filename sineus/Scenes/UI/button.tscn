@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://q3r58o0mbk7"]
+
+[ext_resource type="Texture2D" uid="uid://b7m4is85d0n5" path="res://Assets/UI/buttons.png" id="1_0kpiu"]
+[ext_resource type="Script" uid="uid://d1lf2pf0h3i7p" path="res://Scripts/UI/button.gd" id="2_smycg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhxw7"]
+resource_local_to_scene = true
+atlas = ExtResource("1_0kpiu")
+region = Rect2(0, 0, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trj04"]
+resource_local_to_scene = true
+atlas = ExtResource("1_0kpiu")
+region = Rect2(228, 0, 228, 80)
+
+[node name="ButtonPlay" type="TextureButton"]
+offset_top = -1.0
+offset_right = 228.0
+offset_bottom = 79.0
+scale = Vector2(1.6, 1.6)
+pivot_offset = Vector2(114.39966, 40.06958)
+texture_normal = SubResource("AtlasTexture_yhxw7")
+texture_hover = SubResource("AtlasTexture_trj04")
+script = ExtResource("2_smycg")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

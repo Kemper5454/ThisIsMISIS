@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ybefqv2xrrv8"]
+
+[ext_resource type="Script" uid="uid://dfffnknilrihi" path="res://Scripts/Attacks/attack_crash.gd" id="1_hxpqe"]
+[ext_resource type="PackedScene" uid="uid://iwkc1qy4xu70" path="res://Scenes/attacks/attack_basic.tscn" id="1_rw0ge"]
+[ext_resource type="Texture2D" uid="uid://dv6r3mywn1wnb" path="res://Assets/Textures/Attacks/attack_crash.png" id="3_hxpqe"]
+[ext_resource type="Texture2D" uid="uid://d3a5chy3h8w7w" path="res://Assets/Textures/bullet.png" id="4_05vp6"]
+
+[node name="Attack" instance=ExtResource("1_rw0ge")]
+script = ExtResource("1_hxpqe")
+t_name = "Крэш"
+t_desc = "Усиливает 3 атаки справа"
+is_tonal = false
+damage = 4
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_hxpqe")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Stars" index="0"]
+modulate = Color(1, 0.81666666, 0, 1)
+position = Vector2(408, 121)
+texture = ExtResource("4_05vp6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Stars" index="1"]
+modulate = Color(1, 0.81666666, 0, 1)
+position = Vector2(270, 119)
+texture = ExtResource("4_05vp6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Stars" index="2"]
+modulate = Color(1, 0.81666666, 0, 1)
+position = Vector2(134, 119)
+texture = ExtResource("4_05vp6")

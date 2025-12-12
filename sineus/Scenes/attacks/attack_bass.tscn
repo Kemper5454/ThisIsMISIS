@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://di8aooab7rt5"]
+
+[ext_resource type="PackedScene" uid="uid://iwkc1qy4xu70" path="res://Scenes/attacks/attack_basic.tscn" id="1_86orr"]
+[ext_resource type="Script" uid="uid://4rgd8m1j2tll" path="res://Scripts/Attacks/attack_bass.gd" id="2_86orr"]
+[ext_resource type="Texture2D" uid="uid://bkcdhxgpcjjy4" path="res://Assets/Textures/Attacks/attack_bass.png" id="3_86orr"]
+
+[node name="Attack" instance=ExtResource("1_86orr")]
+script = ExtResource("2_86orr")
+t_name = "Басс"
+t_desc = "Выпускает пронзающий снаряд, мощность которого зависит от расстояния до ближайшей колонки"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_86orr")

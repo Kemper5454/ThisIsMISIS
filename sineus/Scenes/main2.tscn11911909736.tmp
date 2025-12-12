@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl62vvyr18g5y"]
+
+[ext_resource type="Script" uid="uid://k0je0iugqj4b" path="res://Scripts/main.gd" id="1_63pow"]
+[ext_resource type="PackedScene" uid="uid://vag14yrxgtna" path="res://Scenes/player.tscn" id="2_63pow"]
+[ext_resource type="PackedScene" uid="uid://cj84rcvfadqm7" path="res://Scenes/entites/Ghost.tscn" id="5_knmv6"]
+[ext_resource type="PackedScene" uid="uid://cuv8wcw0m2y6u" path="res://Scenes/attacks/attack_kick.tscn" id="5_n7nx0"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_63pow")
+spawn_enemies = false
+
+[node name="Player" parent="." instance=ExtResource("2_63pow")]
+position = Vector2(1522, 1231)
+
+[node name="Attack4" parent="." instance=ExtResource("5_n7nx0")]
+offset_left = 948.0
+offset_top = 731.0
+offset_right = 948.0
+offset_bottom = 731.0
+
+[node name="Ghost" parent="." instance=ExtResource("5_knmv6")]
+position = Vector2(1473, 131)

@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=3 uid="uid://cr15km2p4yi2r"]
+
+[ext_resource type="Script" uid="uid://nbb8amet2gkg" path="res://Scripts/grid.gd" id="1_ciu28"]
+[ext_resource type="Texture2D" uid="uid://bcbudkss1ql0c" path="res://Assets/UI/gri.png" id="2_1uuwe"]
+[ext_resource type="PackedScene" uid="uid://dyaf7lm6a68y4" path="res://Scenes/UI/slot.tscn" id="2_ahwhh"]
+[ext_resource type="Script" uid="uid://dhbgpwsgic61l" path="res://Scripts/UI/debug_label.gd" id="2_h4q2i"]
+[ext_resource type="AudioStream" uid="uid://uh2m0q4uomdg" path="res://Assets/Sounds/back_music.ogg" id="2_siecs"]
+[ext_resource type="Texture2D" uid="uid://ccd71s8l5fsnm" path="res://Assets/UI/gamei logo.png" id="6_807u1"]
+
+[node name="Grid" type="Control"]
+process_mode = 3
+z_index = 88
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ciu28")
+
+[node name="Gri" type="Sprite2D" parent="."]
+position = Vector2(615, 134)
+scale = Vector2(3.3019953, 3.56391)
+texture = ExtResource("2_1uuwe")
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 27.0
+offset_top = 301.0
+offset_right = 67.0
+offset_bottom = 324.0
+script = ExtResource("2_h4q2i")
+parent_variables = Array[StringName]([&"beat"])
+metadata/_custom_type_script = "uid://dhbgpwsgic61l"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_siecs")
+volume_db = -7.82
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Slots" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Row1" type="HBoxContainer" parent="Slots"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 64.0
+offset_right = 1040.0
+offset_bottom = 111.0
+theme_override_constants/separation = 138
+
+[node name="Slot" parent="Slots/Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot2" parent="Slots/Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot3" parent="Slots/Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot4" parent="Slots/Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot5" parent="Slots/Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot6" parent="Slots/Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot7" parent="Slots/Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot8" parent="Slots/Row1" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Row2" type="HBoxContainer" parent="Slots"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 202.0
+offset_right = 1040.0
+offset_bottom = 249.0
+theme_override_constants/separation = 138
+
+[node name="Slot" parent="Slots/Row2" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot2" parent="Slots/Row2" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot3" parent="Slots/Row2" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot4" parent="Slots/Row2" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot5" parent="Slots/Row2" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot6" parent="Slots/Row2" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot7" parent="Slots/Row2" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Slot8" parent="Slots/Row2" instance=ExtResource("2_ahwhh")]
+layout_mode = 2
+
+[node name="Playback" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -45.0
+offset_right = 6.0
+offset_bottom = 313.0
+
+[node name="GameiLogo" type="Sprite2D" parent="."]
+position = Vector2(1675.2405, 101.68747)
+scale = Vector2(3.3583326, 3.3583333)
+texture = ExtResource("6_807u1")

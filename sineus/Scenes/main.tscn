@@ -1,0 +1,262 @@
+[gd_scene load_steps=26 format=3 uid="uid://ojg4hg1bpofm"]
+
+[ext_resource type="Script" uid="uid://k0je0iugqj4b" path="res://Scripts/main.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://dievqxhh1ptsx" path="res://Scripts/waves_logic/wave.gd" id="2_fdnlq"]
+[ext_resource type="Shader" uid="uid://cwqiou7ytxktf" path="res://Assets/image.gdshader" id="2_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://cakndssmgi8i3" path="res://Assets/Textures/ground.png" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cj84rcvfadqm7" path="res://Scenes/entites/Ghost.tscn" id="3_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://c1pojxbck1am0" path="res://Scenes/entites/bat.tscn" id="4_h1bgf"]
+[ext_resource type="PackedScene" uid="uid://csagcj03md8fk" path="res://Scenes/player.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://cqgmeoa5ig3n" path="res://Scenes/entites/eye.tscn" id="5_b3802"]
+[ext_resource type="Script" uid="uid://dhbgpwsgic61l" path="res://Scripts/UI/debug_label.gd" id="5_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://dktsxhx3hg6pg" path="res://Scenes/entites/bettle.tscn" id="6_fevyy"]
+[ext_resource type="Texture2D" uid="uid://y3puqlus1uic" path="res://Assets/Textures/Attacks/fence4.png" id="6_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://0fqd3po3jvog" path="res://Scenes/entites/brain.tscn" id="7_b3802"]
+[ext_resource type="Texture2D" uid="uid://pmb7b36xt0x0" path="res://Assets/Textures/Attacks/fence3.png" id="7_hptm8"]
+[ext_resource type="Texture2D" uid="uid://ddf2b65pdev6u" path="res://Assets/Textures/Attacks/fence1.png" id="8_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://dx06hxxlec23g" path="res://Scenes/entites/mini_boss_1.tscn" id="8_fevyy"]
+[ext_resource type="Texture2D" uid="uid://gtsctevwflcn" path="res://Assets/Textures/Attacks/fence2.png" id="9_6iyac"]
+[ext_resource type="Script" uid="uid://buxpltwo21n8y" path="res://Scripts/props_spawner.gd" id="10_hptm8"]
+[ext_resource type="PackedScene" uid="uid://cs6oumftjlrfa" path="res://Scenes/props/pumpkin_normal.tscn" id="12_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://d25lw8as73plt" path="res://Scenes/props/tombstone.tscn" id="13_jkdf5"]
+
+[sub_resource type="Gradient" id="Gradient_jjvhh"]
+offsets = PackedFloat32Array(0.10655738, 0.9918033)
+colors = PackedColorArray(0, 0, 0, 1, 0.9618413, 1.8571008, 1.1822898, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kry3j"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_21xkr"]
+noise = SubResource("FastNoiseLite_kry3j")
+color_ramp = SubResource("Gradient_jjvhh")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kry3j"]
+shader = ExtResource("2_jjvhh")
+shader_parameter/tile_tex = ExtResource("3_8gbba")
+shader_parameter/tile_scale = Vector2(16, 16)
+shader_parameter/tile_offset = Vector2(0, 0)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_21xkr")
+shader_parameter/noise_strength = 0.445
+shader_parameter/noise_scale = Vector2(1, 1)
+shader_parameter/noise_offset = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdnlq"]
+size = Vector2(124.5, 5009)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
+size = Vector2(3732, 3754)
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_jjgbg")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Waves" type="Node" parent="."]
+
+[node name="Wave1" type="Node" parent="Waves"]
+script = ExtResource("2_fdnlq")
+mobs_in_wave = Array[PackedScene]([ExtResource("3_jkdf5")])
+min_amount_of_enemies = 1
+max_amount_of_enemies = 3
+_min_spawn_time = 2
+_max_spawn_time = 6
+metadata/_custom_type_script = "uid://dievqxhh1ptsx"
+
+[node name="Wave2" type="Node" parent="Waves"]
+script = ExtResource("2_fdnlq")
+mobs_in_wave = Array[PackedScene]([ExtResource("3_jkdf5"), ExtResource("4_h1bgf")])
+min_amount_of_enemies = 1
+max_amount_of_enemies = 3
+_min_spawn_time = 2
+_max_spawn_time = 4
+metadata/_custom_type_script = "uid://dievqxhh1ptsx"
+
+[node name="Wave3" type="Node" parent="Waves"]
+script = ExtResource("2_fdnlq")
+mobs_in_wave = Array[PackedScene]([ExtResource("3_jkdf5"), ExtResource("4_h1bgf"), ExtResource("5_b3802")])
+min_amount_of_enemies = 2
+max_amount_of_enemies = 5
+_min_spawn_time = 1
+_max_spawn_time = 4
+_mob_health_multiplier = 1.2
+metadata/_custom_type_script = "uid://dievqxhh1ptsx"
+
+[node name="Wave4" type="Node" parent="Waves"]
+script = ExtResource("2_fdnlq")
+mobs_in_wave = Array[PackedScene]([ExtResource("4_h1bgf"), ExtResource("5_b3802"), ExtResource("6_fevyy")])
+min_amount_of_enemies = 4
+max_amount_of_enemies = 8
+_min_spawn_time = 3
+_max_spawn_time = 6
+_mob_health_multiplier = 1.4
+metadata/_custom_type_script = "uid://dievqxhh1ptsx"
+
+[node name="Wave5" type="Node" parent="Waves"]
+script = ExtResource("2_fdnlq")
+mobs_in_wave = Array[PackedScene]([ExtResource("5_b3802"), ExtResource("6_fevyy")])
+min_amount_of_enemies = 4
+max_amount_of_enemies = 6
+_min_spawn_time = 1
+_max_spawn_time = 4
+_mob_health_multiplier = 1.7
+metadata/_custom_type_script = "uid://dievqxhh1ptsx"
+
+[node name="Wave6" type="Node" parent="Waves"]
+script = ExtResource("2_fdnlq")
+mobs_in_wave = Array[PackedScene]([ExtResource("3_jkdf5"), ExtResource("4_h1bgf"), ExtResource("5_b3802"), ExtResource("6_fevyy"), ExtResource("7_b3802")])
+min_amount_of_enemies = 4
+max_amount_of_enemies = 8
+_min_spawn_time = 1
+_max_spawn_time = 3
+_mob_health_multiplier = 1.8
+metadata/_custom_type_script = "uid://dievqxhh1ptsx"
+
+[node name="BossWave" type="Node" parent="Waves"]
+script = ExtResource("2_fdnlq")
+mobs_in_wave = Array[PackedScene]([ExtResource("8_fevyy")])
+min_amount_of_enemies = 1
+max_amount_of_enemies = 1
+max_entities = 1
+metadata/_custom_type_script = "uid://dievqxhh1ptsx"
+
+[node name="TextureRect" type="ColorRect" parent="."]
+z_index = -2
+material = SubResource("ShaderMaterial_kry3j")
+offset_left = -3149.0
+offset_top = -3190.0
+offset_right = 3287.0
+offset_bottom = 3484.0
+
+[node name="Player" parent="." instance=ExtResource("4_jjvhh")]
+position = Vector2(-5, -15)
+
+[node name="DebugLabel2" type="Label" parent="Player"]
+visible = false
+offset_left = -19.0
+offset_top = -144.0
+offset_right = 21.0
+offset_bottom = -121.0
+script = ExtResource("5_d1ilt")
+parent_variables = Array[StringName]([&"z_index"])
+metadata/_custom_type_script = "uid://dhbgpwsgic61l"
+
+[node name="Fences" type="CanvasGroup" parent="."]
+position = Vector2(-1667, -1957)
+
+[node name="Fence1" type="TextureRect" parent="Fences"]
+z_index = -1
+offset_right = 3363.0
+offset_bottom = 151.0
+mouse_filter = 2
+texture = ExtResource("6_ynf5e")
+stretch_mode = 1
+
+[node name="Fence6" type="TextureRect" parent="Fences"]
+offset_left = 3586.0
+offset_top = 7.0
+offset_right = 3634.0
+offset_bottom = 3947.0
+mouse_filter = 2
+texture = ExtResource("7_hptm8")
+stretch_mode = 1
+
+[node name="Fence2" type="TextureRect" parent="Fences"]
+offset_left = -261.0
+offset_top = 5.0
+offset_right = -213.0
+offset_bottom = 3945.0
+mouse_filter = 2
+texture = ExtResource("7_hptm8")
+stretch_mode = 1
+
+[node name="Fence3" type="Sprite2D" parent="Fences"]
+z_index = -1
+position = Vector2(-94, 72)
+texture = ExtResource("8_d1ilt")
+
+[node name="Fence4" type="Sprite2D" parent="Fences"]
+z_index = -1
+position = Vector2(3459, 71)
+texture = ExtResource("8_d1ilt")
+flip_h = true
+
+[node name="Fence5" type="Sprite2D" parent="Fences"]
+position = Vector2(3613, 3949)
+texture = ExtResource("9_6iyac")
+
+[node name="Fence10" type="Sprite2D" parent="Fences"]
+position = Vector2(-235, 3939)
+texture = ExtResource("9_6iyac")
+
+[node name="Fence7" type="TextureRect" parent="Fences"]
+z_index = 4096
+offset_left = 4.5
+offset_top = 3979.5
+offset_right = 3367.5
+offset_bottom = 4130.5
+mouse_filter = 2
+texture = ExtResource("6_ynf5e")
+stretch_mode = 1
+
+[node name="Fence8" type="Sprite2D" parent="Fences"]
+z_index = 4096
+position = Vector2(-89.5, 4051.5)
+texture = ExtResource("8_d1ilt")
+
+[node name="Fence9" type="Sprite2D" parent="Fences"]
+z_index = 4096
+position = Vector2(3463.5, 4050.5)
+texture = ExtResource("8_d1ilt")
+flip_h = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Fences"]
+position = Vector2(-610.25, 1958.5)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/StaticBody2D"]
+position = Vector2(324.25, 19.5)
+shape = SubResource("RectangleShape2D_fdnlq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Fences"]
+position = Vector2(3978, 1923)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/StaticBody2D2"]
+position = Vector2(-328, 0)
+shape = SubResource("RectangleShape2D_fdnlq")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Fences"]
+position = Vector2(1714, -270)
+rotation = -1.5707964
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/StaticBody2D3"]
+position = Vector2(-329, -10.000014)
+shape = SubResource("RectangleShape2D_fdnlq")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Fences"]
+position = Vector2(1654, 4473)
+rotation = -1.5707964
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/StaticBody2D4"]
+position = Vector2(339, -14.999985)
+shape = SubResource("RectangleShape2D_fdnlq")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-1893, -1853)
+
+[node name="PropsSpawner" type="Area2D" parent="."]
+script = ExtResource("10_hptm8")
+props = Array[PackedScene]([ExtResource("12_fdnlq"), ExtResource("13_jkdf5")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropsSpawner"]
+position = Vector2(0, 115)
+shape = SubResource("RectangleShape2D_d1ilt")
+debug_color = Color(0.694011, 0.49619204, 0, 0.41960785)

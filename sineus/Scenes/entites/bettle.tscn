@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dktsxhx3hg6pg"]
+
+[ext_resource type="Script" uid="uid://b6a8c65suqxkt" path="res://Scripts/entities/bettle.gd" id="1_qwmkh"]
+[ext_resource type="Texture2D" uid="uid://d3jw88pd4uwra" path="res://Assets/Textures/Enemies/bettle.png" id="2_di3mm"]
+[ext_resource type="PackedScene" uid="uid://dsr0ymd84c80d" path="res://Scenes/drops/experience.tscn" id="2_ug5p3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qwmkh"]
+radius = 910.3164
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_di3mm"]
+radius = 54.0
+height = 132.0
+
+[node name="Bettle" type="CharacterBody2D" node_paths=PackedStringArray("detection_area", "entity_sprite")]
+script = ExtResource("1_qwmkh")
+speed = 200.0
+detection_area = NodePath("Area2D")
+entity_sprite = NodePath("Bettle")
+enable_sqeeze_during_movement = true
+squeeze_multiplier_y = 0.9
+stun_time = 0.01
+stun_knockback_power = 0.1
+Drops = Dictionary[PackedScene, int]({
+ExtResource("2_ug5p3"): 3
+})
+metadata/_custom_type_script = "uid://cgtexfg5p2yob"
+
+[node name="Bettle" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(0.395, 0.395)
+texture = ExtResource("2_di3mm")
+hframes = 4
+vframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qwmkh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 19)
+shape = SubResource("CapsuleShape2D_di3mm")

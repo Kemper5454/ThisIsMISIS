@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://iwkc1qy4xu70"]
+
+[ext_resource type="Script" uid="uid://dfv5jl2v2c5sn" path="res://Scripts/Attacks/attack_base.gd" id="2_recsa"]
+[ext_resource type="Texture2D" uid="uid://lgd2nxi0jvh3" path="res://Assets/Textures/Attacks/attack_basic.png" id="2_t5ql4"]
+[ext_resource type="Script" uid="uid://dhbgpwsgic61l" path="res://Scripts/UI/debug_label.gd" id="3_t5ql4"]
+
+[node name="Attack" type="Control"]
+z_index = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_recsa")
+t_name = "Пианино"
+t_desc = "Обычная атака"
+damage = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_t5ql4")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -59.0
+offset_top = -58.0
+offset_right = 59.0
+offset_bottom = 58.0
+focus_mode = 0
+flat = true
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+z_index = 999
+layout_mode = 0
+offset_left = -30.0
+offset_top = 47.0
+offset_right = 10.0
+offset_bottom = 70.0
+script = ExtResource("3_t5ql4")
+metadata/_custom_type_script = "uid://dhbgpwsgic61l"
+
+[node name="Stars" type="CanvasGroup" parent="."]
+z_index = 99
+position = Vector2(0, -121)
+
+[node name="Damage" type="Label" parent="."]
+z_index = 6
+layout_mode = 0
+offset_left = -59.0
+offset_top = -63.0
+offset_right = -19.0
+offset_bottom = -27.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 26
+text = "12"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

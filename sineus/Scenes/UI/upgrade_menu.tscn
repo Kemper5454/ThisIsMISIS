@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://krb0ose4nnxm"]
+
+[ext_resource type="Script" uid="uid://cjmy7lsfneny" path="res://Scripts/upgrade_menu.gd" id="1_7giqg"]
+[ext_resource type="PackedScene" uid="uid://q3r58o0mbk7" path="res://Scenes/UI/button.tscn" id="2_6i826"]
+[ext_resource type="Texture2D" uid="uid://b7m4is85d0n5" path="res://Assets/UI/buttons.png" id="3_o5ea3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iryf2"]
+resource_local_to_scene = true
+atlas = ExtResource("3_o5ea3")
+region = Rect2(0, 240, 228, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgfwh"]
+resource_local_to_scene = true
+atlas = ExtResource("3_o5ea3")
+region = Rect2(228, 240, 228, 80)
+
+[node name="UpgradeMenu" type="Control"]
+process_mode = 3
+z_index = 9
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7giqg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 305.0
+offset_right = 1692.0
+offset_bottom = 787.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 691.0
+offset_top = 254.0
+offset_right = 1222.0
+offset_bottom = 357.0
+theme_override_font_sizes/font_size = 71
+text = "Выбери 1"
+horizontal_alignment = 1
+
+[node name="Attacks" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 937.0
+offset_top = 544.0
+offset_right = 977.0
+offset_bottom = 584.0
+
+[node name="ButtonSelect" parent="." instance=ExtResource("2_6i826")]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 763.0
+offset_right = 1048.0
+offset_bottom = 843.0
+texture_normal = SubResource("AtlasTexture_iryf2")
+texture_hover = SubResource("AtlasTexture_pgfwh")
+
+[connection signal="child_order_changed" from="Attacks" to="." method="_on_attacks_child_order_changed"]
+[connection signal="pressed" from="ButtonSelect" to="." method="_on_button_select_pressed"]
